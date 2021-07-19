@@ -32,8 +32,8 @@ crontab -e
 * 分: 0 ~ 59
 * 時: 0~23
 * 日: 1~31
-* 月: 1~12 or jan~dec
-* 曜日: 0~7 or sun~sat
+* 月: 1\~12 or jan\~dec
+* 曜日: 0\~7 or sun\~sat
 
 # Who?
 
