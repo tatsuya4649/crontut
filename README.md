@@ -41,9 +41,41 @@ crontab -e
 
 ex. rootが設定すれば、実行されるコマンドはroot権限で実行される。
 
+# Where? 
+
+cronの実行時のカレントディレクトリは上で説明した実行ユーザーのホームディレクトリ。
+
+# Output
+
+初期設定のままだと、cronの出力はどこにも出力されない。
+
+コマンドごとに出力を変える場合は、crontab -eで
+
+```
+
+*/1 * * * * command > /var/log/command.log 2>&1
+
+
+```
+
+というように設定することで、commandの標準エラー出力と標準出力が/var/log/command.logに出力される。(標準出力のみがほしい場合は、2>&1を削除。)
+
+ちなみにデフォルトのcronの出力設定は、/etc/rsyslog.d/50-default.confにあり、
+
+```
+
+#cronn.*                         /var/log/cron.log
+
+
+```
+
+コメントアウトされている。このコメントアウトを外してrsyslogをrestartしてあげると、実行したコマンドの出力が設定したファイルに出力される。
+
 # send Mail
 
 もしも実行されたコマンドの標準出力、標準エラー出力をメール送信したい場合は、crontabの中のMAILTO環境変数にメールアドレスを書き込む。
+
+
 
 # Command
 
